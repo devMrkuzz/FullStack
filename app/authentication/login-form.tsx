@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import type React from "react";
 
+import { signIn } from "next-auth/react"; // ← ADD THIS
 import Link from "next/link";
 import { useState } from "react";
 
@@ -16,20 +17,17 @@ export function LoginForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // TODO: Implement login logic
     console.log("Login attempt:", { email, password });
     setTimeout(() => setIsLoading(false), 1000);
   };
 
   const handleGoogleLogin = () => {
-    // TODO: Implement Google OAuth login
-    console.log("Google login clicked");
+    signIn("google", { callbackUrl: "/" }); // ← FIXED GOOGLE LOGIN
   };
 
   return (
     <Card className="w-full max-w-md border border-border p-8">
       <div className="space-y-6">
-        {/* Header */}
         <div className="space-y-2">
           <h1 className="text-2xl font-bold text-primary">Login</h1>
           <p className="text-sm text-muted-foreground">
@@ -37,9 +35,7 @@ export function LoginForm() {
           </p>
         </div>
 
-        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          {/* Email Input */}
           <div className="space-y-2">
             <label
               htmlFor="email"
@@ -58,7 +54,6 @@ export function LoginForm() {
             />
           </div>
 
-          {/* Password Input */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
               <label
@@ -84,7 +79,6 @@ export function LoginForm() {
             />
           </div>
 
-          {/* Login Button */}
           <Button
             type="submit"
             disabled={isLoading}
@@ -94,7 +88,6 @@ export function LoginForm() {
           </Button>
         </form>
 
-        {/* Divider */}
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-border" />
@@ -104,7 +97,6 @@ export function LoginForm() {
           </div>
         </div>
 
-        {/* Google Login Button */}
         <Button
           type="button"
           onClick={handleGoogleLogin}
@@ -114,7 +106,6 @@ export function LoginForm() {
           Login with Google
         </Button>
 
-        {/* Sign Up Link */}
         <div className="text-center text-sm text-muted-foreground">
           Don't have an account?{" "}
           <Link

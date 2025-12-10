@@ -31,7 +31,7 @@ export function RegistrationForm() {
 
   const handleGoogleSignup = () => {
     // TODO: Implement Google OAuth signup
-    console.log("Google signup clicked");
+    console.log("Google", { backUrl: "/" });
   };
 
   return (
