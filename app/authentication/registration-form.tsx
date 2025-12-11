@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 export function RegistrationForm() {
   const [fullName, setFullName] = useState("");
@@ -31,7 +32,7 @@ export function RegistrationForm() {
 
   const handleGoogleSignup = () => {
     // TODO: Implement Google OAuth signup
-    console.log("Google", { backUrl: "/" });
+    signIn("google", { callbackUrl: "/" });
   };
 
   return (

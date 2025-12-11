@@ -1,9 +1,6 @@
-import { RegistrationForm } from "@/app/authentication/registration-form";
+"use client";
 
-export const metadata = {
-  title: "Sign up | AskSorSU",
-  description: "Create a new account",
-};
+import { RegistrationForm } from "@/app/authentication/registration-form";
 
 export default function SignupPage() {
   return (
